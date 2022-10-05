@@ -1,0 +1,22 @@
+<app-show></app-show>
+<div >
+    <h3>Create Prodeuct</h3>
+    <form class="" #productsForm="ngForm" (ngSubmit)="onProductCreate(productsForm.value)">
+      <div class="form-control">
+        <label>Product Name</label>
+        <hr>
+        <input type="text" name="pName" ngModel>
+      </div>
+      <div class="form-control">
+        <label>Product Desciption</label>
+        <hr>
+        <input type="text" name="desc" ngModel>
+      </div>
+      <div class="form-control">
+        <label>Product Price</label>
+        <hr>
+        <input  type="text"name="price" ngModel>
+      </div>
+      <input class="btn btn-primary" type="submit" value="Add product">
+    </form>
+  </div>

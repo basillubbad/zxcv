@@ -1,0 +1,62 @@
+<app-show></app-show>
+    
+
+<div  class="product-display-area">
+    <h3>All Products</h3>
+    <table class="table">  
+        <tr *ngIf="allProducts.length<1 && !isFetching">
+          <td colspan="5">No Products Avilable!</td>
+        </tr>
+        <tr *ngIf="errorMessage">
+          <td colspan="5">{{errorMessage}}</td>
+        </tr>
+        <tr *ngIf="isFetching && !errorMessage">
+          <td colspan="5">loading.....</td>
+        </tr>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Desciption</th>
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+    
+        <tr *ngFor="let prod of allProducts ; index as i">
+          <th scope="row">{{i+1}}</th>
+          <td>{{prod.pName}}</td>
+          <td>{{prod.desc}}</td>
+          <td>${{prod.price}}</td>
+          <td><button type="button" class="btn btn-danger" (click)="onDeleteProduct(prod.id)">Delete</button></td>
+          <td><button type="button" class="btn btn-success"(click)="onEditClicked(prod.id)" routerLink="edit">Edit</button></td>
+          <!--  -->
+        </tr>
+      </tbody>
+    </table>
+    
+    <input class="btn btn-primary" type="submit" value="Fetch Product" (click)="onProductFetch()">
+    <button type="button" class="btn btn-danger" (click)="onDeleteAllProduct()">Delete All Products</button>
+  </div>
+  <div class="{{classModee ? 'off':'on'}}"  >
+    <h3>Update Prodeuct</h3>
+    <form class="" #productsForm="ngForm" (ngSubmit)="onProductCreate(productsForm.value)">
+      <div >
+        <label>Product Name</label>
+        <hr>
+        <input type="text" name="pName" ngModel>
+      </div>
+      <div class="">
+        <label>Product Desciption</label>
+        <hr>
+        <input type="text" name="desc" ngModel>
+      </div>
+      <div class="">
+        <label>Product Price</label>
+        <hr>
+        <input  type="text"name="price" ngModel>
+      </div>
+      <input class="btn btn-primary" type="submit" value="Update product">
+      <button class="btn btn-danger" (click)="onDone()" >Done</button>
+    </form>
+  </div>
